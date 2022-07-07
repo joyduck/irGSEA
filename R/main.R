@@ -185,6 +185,7 @@ irGSEA.score <- function(object = NULL, assay = NULL, slot = "data",
         # calculate the rank matrix
         aucell.rank <- AUCell::AUCell_buildRankings(my.matrix[, my.matrix.list[[k]]],
                                                     nCores = ncores,
+                                                    splitByBlocks=TRUE,
                                                     plotStats = F,
                                                     verbose = F)
         h.gsets.list.aucell <- h.gsets.list %>% purrr::discard(.p = function(x){all(stringr::str_detect(x, pattern = "\\+$|-$"))})
@@ -206,6 +207,7 @@ irGSEA.score <- function(object = NULL, assay = NULL, slot = "data",
     }else{
       aucell.rank <- AUCell::AUCell_buildRankings(my.matrix,
                                                   nCores = ncores,
+                                                  splitByBlocks=TRUE,
                                                   plotStats = F,
                                                   verbose = F)
       h.gsets.list.aucell <- h.gsets.list %>% purrr::discard(.p = function(x){all(stringr::str_detect(x, pattern = "\\+$|-$"))})
